@@ -1,0 +1,26 @@
+This is a sample text file context.
+and you can read that file and can udpate also with fs
+
+The fs module is used to interact with a file system. It does not need to be installed because it is part of the Node.js core and can simply be required. The following code sample reads a local file synchronously using the fs module and prints the file contents to the console.
+
+const fs = require('fs');
+// Asynchronously read the file 'sample.txt'
+fs.readFile('sample.txt', 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    // Print the contents of 'sample.txt' to the console
+    console.log(data);
+});
+
+The fs module can also be used for input and output, known as I/O. The fs module methods can be used to retrieve information from or write data to an external file.
+
+const fs = require('fs');
+// Read the contents of the file '/content.md' synchronously and store them in 'data'
+const data = fs.readFileSync('/content.md', 'utf8');
+// Print the contents of 'content.md' to the console
+console.log(data);
+
+
+

@@ -31,3 +31,23 @@ http.createServer(function (req, res) {
 //  // Start the server and listen on the specified port
 //  server.listen(port);
 //  console.log('Server listening on port: ' + port);
+
+//or
+
+// The http module allows Node.js to transfer data over the Hyper Text Transfer Protocol (HTTP). 
+// This module can create an HTTP server that listens to server ports and gives a response back to the client.
+
+// const http = require('http');
+
+// const hostname = '127.0.0.1';
+// const port = 3000;
+
+// const server = http.createServer((req, res) => {
+//   res.statusCode = 200;
+//   res.setHeader('Content-Type', 'text/plain');
+//   res.end('Hello World\n');
+// });
+
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://${hostname}:${port}/`);
+// });
