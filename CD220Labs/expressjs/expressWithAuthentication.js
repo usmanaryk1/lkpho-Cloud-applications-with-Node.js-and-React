@@ -46,8 +46,12 @@ app.use("/auth", function auth(req, res, next) {
 
 // Route to handle user login
 app.post("/login", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  // const username = req.body.username;
+  // const password = req.body.password;
+  const username = req.body.username || req.query.username;
+  const password = req.body.password || req.query.password;
+  console.log("username password", username , password, req.body);
+
 
   if (!username || !password) {
     return res.status(404).json({ message: "Error logging in" });
@@ -69,8 +73,17 @@ app.post("/login", (req, res) => {
 
 // Route to handle user registration
 app.post("/register", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  //for req.body need bodyparser other wise username password undefined undefined {}
+  // npm install body-parser
+  //   const bodyParser = require('body-parser');
+  //   app.use(bodyParser.json()); // To parse JSON bodies
+  // app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded bodies
+  // const username = req.body.username;
+  // const password = req.body.password;
+  // or use req.query.username // username password user12 pwd12 {}
+  const username = req.body.username || req.query.username;
+  const password = req.body.password || req.query.password;
+  console.log("username password", username , password, req.body);
 
   if (username && password) {
     if (!doesExist(username)) {
@@ -90,4 +103,4 @@ app.get("/auth/get_message", (req, res) => {
 
 const PORT = 5000; // Define the port number
 
-app.listen(PORT, () => console.log("Server is running")); // Start the server and listen on the specified port
+app.listen(PORT, () => console.log("Server is running on port 5000")); // Start the server and listen on the specified port

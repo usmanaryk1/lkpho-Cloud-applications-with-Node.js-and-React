@@ -28,6 +28,25 @@ app.get("/:name", (req, res) => {
     res.send("Hello " + req.params.name);
 });
 
+// Add your own end point /fetchMonth/:num
+// Define an array containing the names of the months
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+// Define a route to fetch the month name based on a given number
+app.get("/fetchMonth/:num", (req, res) => {
+    console.log("fetchMonth/:num", req);
+    // Parse the number from the request parameters
+    let num = parseInt(req.params.num);
+    // Check if the number is a valid month number
+    if(num < 1 || num > 12) {
+        // Send an error message if the number is not valid
+        res.send("Not a valid month number");
+    } else {
+        // Send the corresponding month name if the number is valid
+        res.send(months[num - 1]);
+    }
+});
+// to check this endpoint write curl -X GET http://localhost:3333/fetchMonth/7
+
 // Start the server and listen on port 3333
 app.listen(3333, () => {
     console.log(`Listening at http://localhost:3333`);
