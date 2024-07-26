@@ -28,7 +28,8 @@ app.use(express.json()); // Middleware to parse JSON request bodies // need body
 app.use(session({ secret: "fingerpint" })); // Middleware to handle sessions
 
 // Middleware to authenticate users using JWT
-app.use("/auth", function auth(req, res, next) {
+// use this for attach middleware with api below const authMiddleware = ((req, res, next) => {
+app.use("/auth", function auth(req, res, next) { // this is not working use above syntex
   if (req.session.authorization) { // Get the authorization object stored in the session
     token = req.session.authorization['accessToken']; // Retrieve the token from authorization object
     jwt.verify(token, "access", (err, user) => { // Use JWT to verify token
@@ -97,6 +98,7 @@ app.post("/register", (req, res) => {
 });
 
 // Main endpoint to be accessed by authenticated users
+// use middleware like this then this will work app.use('/auth/get_message"', authMiddleware, (req, res) => {
 app.get("/auth/get_message", (req, res) => {
   return res.status(200).json({ message: "Hello, You are an authenticated user. Congratulations!" });
 });
