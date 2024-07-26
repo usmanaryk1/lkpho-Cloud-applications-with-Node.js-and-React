@@ -23,7 +23,7 @@ const authenticatedUser = (username, password) => {
 
 const app = express();
 
-app.use(express.json()); // Middleware to parse JSON request bodies
+app.use(express.json()); // Middleware to parse JSON request bodies // need bodyparser otherwise
 
 app.use(session({ secret: "fingerpint" })); // Middleware to handle sessions
 
@@ -73,7 +73,7 @@ app.post("/login", (req, res) => {
 
 // Route to handle user registration
 app.post("/register", (req, res) => {
-  //for req.body need bodyparser other wise username password undefined undefined {}
+  //for req.body need bodyparser other wise username password undefined undefined {} or for simpler use app.use(express.json());
   // npm install body-parser
   //   const bodyParser = require('body-parser');
   //   app.use(bodyParser.json()); // To parse JSON bodies
